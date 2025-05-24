@@ -1,4 +1,4 @@
-package com.ities45.skycast.model.pojo
+package com.ities45.skycast.model.pojo.hourlyforecast
 
 data class Main(
     val feels_like: Double,
