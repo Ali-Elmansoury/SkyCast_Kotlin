@@ -1,3 +1,5 @@
+import java.util.Properties
+
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
@@ -30,6 +32,14 @@ android {
                 "proguard-rules.pro"
             )
         }
+        getByName("debug") {
+            buildConfigField("String", "OPENWEATHER_API_KEY", "\"${getLocalProperty("OPENWEATHER_API_KEY")}\"")
+        }
+        getByName("release") {
+            buildConfigField("String", "OPENWEATHER_API_KEY", "\"${getLocalProperty("OPENWEATHER_API_KEY")}\"")
+            isMinifyEnabled = true
+            proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
+        }
     }
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11
@@ -40,6 +50,21 @@ android {
     }
     buildFeatures {
         viewBinding = true
+        buildConfig = true
+    }
+}
+
+fun getLocalProperty(key: String): String {
+    val properties = Properties()
+    // Use project.rootDir to point to the project root
+    val localPropertiesFile = file("${project.rootDir}/local.properties")
+    return if (localPropertiesFile.exists()) {
+        localPropertiesFile.inputStream().use { stream ->
+            properties.load(stream)
+            properties.getProperty(key) ?: ""
+        }
+    } else {
+        "" // Return empty string if file is missing
     }
 }
 
@@ -125,4 +150,10 @@ dependencies {
 
     //Lottie Airbnb
     implementation ("com.airbnb.android:lottie:6.6.6")
+
+    //Android Security Crypto
+    implementation ("androidx.security:security-crypto:1.0.0")
+
+    //Open Street Map
+    implementation ("org.osmdroid:osmdroid-android:6.1.20")
 }
