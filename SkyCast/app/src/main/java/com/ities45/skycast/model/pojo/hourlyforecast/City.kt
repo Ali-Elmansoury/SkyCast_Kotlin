@@ -1,6 +1,6 @@
 package com.ities45.skycast.model.pojo.hourlyforecast
 
-import com.ities45.skycast.model.pojo.Coord
+import com.ities45.skycast.model.pojo.common.Coord
 
 data class City(
     val coord: Coord,

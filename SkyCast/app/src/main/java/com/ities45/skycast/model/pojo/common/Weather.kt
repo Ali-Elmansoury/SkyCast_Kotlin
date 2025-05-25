@@ -1,4 +1,4 @@
-package com.ities45.skycast.model.pojo
+package com.ities45.skycast.model.pojo.common
 
 data class Weather(
     val description: String,
