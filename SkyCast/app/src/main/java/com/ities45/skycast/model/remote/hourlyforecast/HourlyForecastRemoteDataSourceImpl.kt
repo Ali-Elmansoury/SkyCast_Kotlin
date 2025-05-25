@@ -175,7 +175,7 @@ class HourlyForecastRemoteDataSourceImpl(private val hourlyForecastApiService: I
         count: Int
     ): List<HourlyForecastItem> = grouped.entries.drop(1).take(count).mapNotNull { it.value.getOrNull(4) }
 
-    fun getNextDaysSummariesAtNoon(grouped: Map<String, List<HourlyForecastItem>>): List<HourlyForecastItem> {
+    override fun getNextDaysSummariesAtNoon(grouped: Map<String, List<HourlyForecastItem>>): List<HourlyForecastItem> {
         return grouped.entries.drop(1) // skip today
             .mapNotNull { (_, forecasts) ->
                 forecasts.firstOrNull { forecast ->

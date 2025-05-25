@@ -40,5 +40,6 @@ interface IHourlyForecastRemoteDataSource {
 
     /** ---------------- DAILY SUMMARY FOR NEXT DAYS ---------------- */
     fun getNextDaysSummaries(grouped: Map<String, List<HourlyForecastItem>>, count: Int = 4): List<HourlyForecastItem>
+    fun getNextDaysSummariesAtNoon(grouped: Map<String, List<HourlyForecastItem>>): List<HourlyForecastItem>
 
 }
