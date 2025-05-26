@@ -7,7 +7,7 @@ import androidx.lifecycle.viewModelScope
 import com.ities45.skycast.model.pojo.currentweather.CurrentWeatherResponse
 import com.ities45.skycast.model.pojo.hourlyforecast.HourlyForecastItem
 import com.ities45.skycast.model.pojo.hourlyforecast.HourlyItem
-import com.ities45.skycast.model.repository.IWeatherRepository
+import com.ities45.skycast.model.repository.weather.IWeatherRepository
 import kotlinx.coroutines.launch
 
 class HomeViewModel(private val repo: IWeatherRepository) : ViewModel() {
