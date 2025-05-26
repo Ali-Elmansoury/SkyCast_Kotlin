@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    card_view:cardCornerRadius="@dimen/_5sdp"
+    card_view:cardPreventCornerOverlap="true"
+    android:layout_margin="@dimen/_5sdp"
+    android:backgroundTint="#7FD9DE"
+    android:backgroundTintMode="src_over"
+    android:background="@android:color/transparent">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:padding="@dimen/_6sdp">
+
+        <TextView
+            android:id="@+id/tvHourTemp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/_5sdp"
+            android:layout_marginTop="@dimen/_2sdp"
+            android:text="26°C"
+            android:textColor="#FFFFFF"
+            android:textSize="14sp" />
+
+        <ImageView
+            android:id="@+id/ivHourIcon"
+            android:layout_width="@dimen/_30sdp"
+            android:layout_height="@dimen/_30sdp"
+            android:src="@drawable/cloudy" />
+
+        <TextView
+            android:id="@+id/tvHourTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/_5sdp"
+            android:layout_marginTop="@dimen/_2sdp"
+            android:text="16:00"
+            android:textColor="#FFFFFF"
+            android:textSize="12sp" />
+    </LinearLayout>
+</androidx.cardview.widget.CardView>
