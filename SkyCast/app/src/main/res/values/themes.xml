@@ -1,18 +1,22 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <!-- Base application theme. -->
+
+    <!-- Base app theme -->
     <style name="Base.Theme.SkyCast" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- Customize your light theme here. -->
-        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+        <!-- Transparent status bar -->
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:windowDrawsSystemBarBackgrounds">true</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="colorPrimary">#47BFDF</item>
+
     </style>
 
+    <!-- App theme -->
     <style name="Theme.SkyCast" parent="Base.Theme.SkyCast" />
 
-    <style name="Theme.SkyCast.NoActionBar">
-        <item name="windowActionBar">false</item>
-        <item name="windowNoTitle">true</item>
-    </style>
+    <!-- Optional: AppBarOverlay theme -->
+    <style name="Theme.SkyCast.AppBarOverlay" parent="ThemeOverlay.Material3.Dark.ActionBar" />
 
-    <style name="Theme.SkyCast.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+    <!-- Optional: Popup menu theme -->
+    <style name="Theme.SkyCast.PopupOverlay" parent="ThemeOverlay.Material3.Light" />
 
-    <style name="Theme.SkyCast.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 </resources>
