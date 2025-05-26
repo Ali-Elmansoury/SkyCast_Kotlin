@@ -5,6 +5,7 @@ import com.ities45.skycast.model.local.model.ForecastBundle
 import com.ities45.skycast.model.pojo.currentweather.CurrentWeatherResponse
 import com.ities45.skycast.model.pojo.hourlyforecast.HourlyForecastItem
 import com.ities45.skycast.model.pojo.hourlyforecast.HourlyForecastResponse
+import com.ities45.skycast.model.pojo.hourlyforecast.HourlyItem
 
 interface IWeatherRepository {
     // Remote data source methods (Current Weather)
@@ -79,6 +80,12 @@ interface IWeatherRepository {
         count: Int
     ): List<HourlyForecastItem>
     fun getNextDaysSummariesAtNoon(grouped: Map<String, List<HourlyForecastItem>>): List<HourlyForecastItem>
+//    fun createHourlyItem(
+//        day: String,
+//        grouped: Map<String, List<HourlyForecastItem>>,
+//        timezoneOffsetSeconds: Int,
+//        icon: String
+//    ): HourlyItem
 
     // Local data source methods
     suspend fun storeFavoriteLocation(location: FavoriteLocationEntity): Long

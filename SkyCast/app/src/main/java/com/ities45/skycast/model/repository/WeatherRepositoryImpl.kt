@@ -7,6 +7,7 @@ import com.ities45.skycast.model.local.model.ForecastBundle
 import com.ities45.skycast.model.pojo.currentweather.CurrentWeatherResponse
 import com.ities45.skycast.model.pojo.hourlyforecast.HourlyForecastItem
 import com.ities45.skycast.model.pojo.hourlyforecast.HourlyForecastResponse
+import com.ities45.skycast.model.pojo.hourlyforecast.HourlyItem
 import com.ities45.skycast.model.remote.currentweather.ICurrentWeatherRemoteDataSource
 import com.ities45.skycast.model.remote.hourlyforecast.IHourlyForecastRemoteDataSource
 
@@ -15,6 +16,21 @@ class WeatherRepositoryImpl(
     private val currentWeatherRemoteDataSource: ICurrentWeatherRemoteDataSource,
     private val hourlyForecastRemoteDataSource: IHourlyForecastRemoteDataSource
 ) : IWeatherRepository {
+
+    companion object{
+        private var instance: WeatherRepositoryImpl? = null
+        fun getInstance(
+            localDataSource: IWeatherLocalDataSource,
+            currentWeatherRemoteDataSource: ICurrentWeatherRemoteDataSource,
+            hourlyForecastRemoteDataSource: IHourlyForecastRemoteDataSource
+        ): WeatherRepositoryImpl{
+            if (instance == null)
+            {
+                instance = WeatherRepositoryImpl(localDataSource, currentWeatherRemoteDataSource, hourlyForecastRemoteDataSource)
+            }
+            return instance!!
+        }
+    }
 
     // Remote data source methods (Current Weather)
     override suspend fun fetchCurrentWeather(
@@ -278,4 +294,20 @@ class WeatherRepositoryImpl(
             emptyList()
         }
     }
+
+//    override fun createHourlyItem(
+//        day: String,
+//        grouped: Map<String, List<HourlyForecastItem>>,
+//        timezoneOffsetSeconds: Int,
+//        icon: String
+//    ): HourlyItem {
+//        val temperatures = getTemperatures(day, grouped)
+//        val hourLabels = getHourLabels(day, grouped, timezoneOffsetSeconds)
+//        return HourlyItem(
+//            temp = temperatures,
+//            hour = hourLabels,
+//            icon = icon
+//        )
+//    }
+
 }
