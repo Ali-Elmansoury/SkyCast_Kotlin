@@ -1,5 +1,6 @@
-package com.ities45.skycast.model.test
+package com.ities45.skycast.model
 
+import android.content.Context
 import android.util.Log
 import com.ities45.skycast.model.local.WeatherDatabase
 import com.ities45.skycast.model.local.IWeatherLocalDataSource
@@ -7,16 +8,18 @@ import com.ities45.skycast.model.local.WeatherLocalDataSourceImpl
 import com.ities45.skycast.model.local.entity.FavoriteLocationEntity
 import com.ities45.skycast.model.remote.currentweather.CurrentWeatherRemoteDataSourceImpl
 import com.ities45.skycast.model.remote.currentweather.ICurrentWeatherRemoteDataSource
+import com.ities45.skycast.model.remote.currentweather.ICurrentWeatherService
 import com.ities45.skycast.model.remote.hourlyforecast.HourlyForecastRemoteDataSourceImpl
 import com.ities45.skycast.model.remote.hourlyforecast.IHourlyForecastRemoteDataSource
+import com.ities45.skycast.model.remote.hourlyforecast.IHourlyForecastService
 import com.ities45.skycast.model.repository.IWeatherRepository
 import com.ities45.skycast.model.repository.WeatherRepositoryImpl
 import kotlinx.coroutines.runBlocking
 
 fun testWeatherDataFlow(
-    context: android.content.Context,
-    currentWeatherApiService: com.ities45.skycast.model.remote.currentweather.ICurrentWeatherService,
-    hourlyForecastApiService: com.ities45.skycast.model.remote.hourlyforecast.IHourlyForecastService
+    context: Context,
+    currentWeatherApiService: ICurrentWeatherService,
+    hourlyForecastApiService: IHourlyForecastService
 ) {
     runBlocking {
         // Initialize dependencies
