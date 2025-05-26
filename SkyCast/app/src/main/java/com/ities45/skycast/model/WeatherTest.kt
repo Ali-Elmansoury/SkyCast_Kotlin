@@ -12,8 +12,8 @@ import com.ities45.skycast.model.remote.currentweather.ICurrentWeatherService
 import com.ities45.skycast.model.remote.hourlyforecast.HourlyForecastRemoteDataSourceImpl
 import com.ities45.skycast.model.remote.hourlyforecast.IHourlyForecastRemoteDataSource
 import com.ities45.skycast.model.remote.hourlyforecast.IHourlyForecastService
-import com.ities45.skycast.model.repository.IWeatherRepository
-import com.ities45.skycast.model.repository.WeatherRepositoryImpl
+import com.ities45.skycast.model.repository.weather.IWeatherRepository
+import com.ities45.skycast.model.repository.weather.WeatherRepositoryImpl
 import kotlinx.coroutines.runBlocking
 
 fun testWeatherDataFlow(
