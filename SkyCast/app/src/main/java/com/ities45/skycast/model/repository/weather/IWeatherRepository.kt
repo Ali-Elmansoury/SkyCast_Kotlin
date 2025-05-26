@@ -1,11 +1,10 @@
-package com.ities45.skycast.model.repository
+package com.ities45.skycast.model.repository.weather
 
 import com.ities45.skycast.model.local.entity.FavoriteLocationEntity
 import com.ities45.skycast.model.local.model.ForecastBundle
 import com.ities45.skycast.model.pojo.currentweather.CurrentWeatherResponse
 import com.ities45.skycast.model.pojo.hourlyforecast.HourlyForecastItem
 import com.ities45.skycast.model.pojo.hourlyforecast.HourlyForecastResponse
-import com.ities45.skycast.model.pojo.hourlyforecast.HourlyItem
 
 interface IWeatherRepository {
     // Remote data source methods (Current Weather)
