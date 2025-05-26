@@ -1,0 +1,21 @@
+<ripple xmlns:android="http://schemas.android.com/apk/res/android"
+    android:color="#80FFFFFF"> <!-- Ripple color (white with 50% opacity) -->
+
+    <item>
+        <selector>
+            <item android:state_checked="true">
+                <shape android:shape="rectangle">
+                    <solid android:color="#8030C7D1" /> <!-- Highlight color with 50% opacity -->
+                    <corners android:radius="12dp" /> <!-- Rounded corners -->
+                </shape>
+            </item>
+            <item>
+                <shape android:shape="rectangle">
+                    <solid android:color="@android:color/transparent" />
+                    <corners android:radius="12dp" /> <!-- Rounded corners for unselected state -->
+                </shape>
+            </item>
+        </selector>
+    </item>
+
+</ripple>
