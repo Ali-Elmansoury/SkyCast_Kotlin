@@ -3,7 +3,21 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/nav_home">
+    app:startDestination="@+id/initialSetupFragment">
+
+    <!-- Add initial setup fragment -->
+    <fragment
+        android:id="@+id/initialSetupFragment"
+        android:name="com.ities45.skycast.ui.initialsetup.view.InitialSetupFragment"
+        android:label="Initial Setup"
+        tools:layout="@layout/fragment_initial_setup">
+        <action
+            android:id="@+id/action_initialSetup_to_home"
+            app:destination="@id/nav_home" />
+        <action
+            android:id="@+id/action_initialSetup_to_map"
+            app:destination="@id/mapFragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/nav_home"
@@ -15,7 +29,16 @@
         android:id="@+id/nav_favorites"
         android:name="com.ities45.skycast.ui.favorites.view.FavoritesFragment"
         android:label="Favorites"
-        tools:layout="@layout/fragment_favorites" />
+        tools:layout="@layout/fragment_favorites" >
+
+        <action
+            android:id="@+id/action_favoritesFragment_to_mapFragment"
+            app:destination="@id/mapFragment"/>
+        <action
+            android:id="@+id/action_favoritesFragment_to_favoriteDetailFragment"
+            app:destination="@id/favoriteDetailFragment"/>
+
+    </fragment>
 
     <fragment
         android:id="@+id/nav_alerts"
@@ -28,4 +51,23 @@
         android:name="com.ities45.skycast.ui.settings.view.SettingsFragment"
         android:label="Settings"
         tools:layout="@layout/fragment_settings"/>
+
+    <fragment
+        android:id="@+id/mapFragment"
+        android:name="com.ities45.skycast.ui.map.view.MapFragment">
+        <action
+            android:id="@+id/action_mapFragment_to_homeFragment"
+            app:destination="@id/nav_home">
+        </action>
+
+        <action
+            android:id="@+id/action_mapFragment_to_favoritesFragment"
+            app:destination="@id/nav_favorites"/>
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/favoriteDetailFragment"
+        android:name="com.ities45.skycast.ui.favorites.view.FavoriteDetailFragment"
+        android:label="Favorite Detail"/>
 </navigation>
