@@ -1,0 +1,57 @@
+<resources>
+    <string name="app_name">سكاي كاست</string>
+    <string name="title_activity_main">النشاط الرئيسي</string>
+    <string name="navigation_drawer_open">فتح القائمة الجانبية</string>
+    <string name="navigation_drawer_close">إغلاق القائمة الجانبية</string>
+    <string name="nav_header_title">أندرويد ستوديو</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">رأس التنقل</string>
+    <string name="action_settings">الإعدادات</string>
+
+    <string name="menu_home">الرئيسية</string>
+    <string name="menu_gallery">المعرض</string>
+    <string name="menu_slideshow">عرض الشرائح</string>
+    <string name="menu_favorites">المفضلة</string>
+    <string name="menu_alerts">التنبيهات</string>
+    <string name="menu_settings">الإعدادات</string>
+    <string name="cairo">القاهرة</string>
+    <string name="no_alarms">لا توجد تنبيهات</string>
+    <string name="no_places">لا توجد أماكن</string>
+    <string name="today">اليوم</string>
+    <string name="next_forecast">التوقع التالي</string>
+    <string name="initial_setup">الإعداد الأولي</string>
+    <string name="location">الموقع</string>
+    <string name="gps">GPS</string>
+    <string name="map">الخريطة</string>
+    <string name="notifications">الإشعارات</string>
+    <string name="ok">حسنًا</string>
+    <string name="language">اللغة</string>
+    <string name="english">الإنجليزية</string>
+    <string name="arabic">العربية</string>
+    <string name="temperature">درجة الحرارة</string>
+    <string name="celsius">سيلسيوس</string>
+    <string name="kelvin">كلفن</string>
+    <string name="fahrenheit">فهرنهايت</string>
+    <string name="wind_speed">سرعة الرياح</string>
+    <string name="meter_sec">متر / ثانية</string>
+    <string name="mile_hour">ميل / ساعة</string>
+    <string name="enable">تفعيل</string>
+    <string name="disable">تعطيل</string>
+    <string name="hello_blank_fragment">مرحبًا بالمكون الفارغ</string>
+    <string name="from">من</string>
+    <string name="to">إلى</string>
+    <string name="alarm">منبه</string>
+    <string name="save">حفظ</string>
+    <string name="delete">حذف</string>
+    <string name="search_for_a_city">ابحث عن مدينة</string>
+    <string name="search_location">ابحث عن موقع</string>
+
+    <!-- Added weather-related labels -->
+    <string name="wind_label">الرياح</string>
+    <string name="humidity_label">الرطوبة</string>
+    <string name="pressure_label">الضغط</string>
+    <string name="visibility_label">الرؤية</string>
+    <string name="cloudiness_label">الغيوم</string>
+    <string name="loading">جار التحميل...</string>
+    <string name="error_loading_weather">خطأ في تحميل الطقس</string>
+</resources>
