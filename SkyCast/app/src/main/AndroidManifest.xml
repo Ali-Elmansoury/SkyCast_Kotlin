@@ -7,6 +7,14 @@
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
+    <!-- Permissions for Alarms and Notifications -->
+    <uses-permission android:name="android.permission.SCHEDULE_EXACT_ALARM"/>
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS"/>
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
+
+    <!-- New permission for drawing over other apps -->
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW"/>
+
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -17,6 +25,15 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.SkyCast"
         tools:targetApi="31">
+
+        <!-- Register the BroadcastReceiver for Alarms -->
+        <receiver android:name=".ui.alerts.receiver.AlarmReceiver"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="com.ities45.skycast.ALARM_TRIGGERED"/>
+            </intent-filter>
+        </receiver>
+
         <activity
             android:name=".MainActivity"
             android:exported="true">
