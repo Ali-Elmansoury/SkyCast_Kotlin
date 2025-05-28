@@ -24,6 +24,9 @@ class SettingsFragment : Fragment() {
     lateinit var vmFactory: SettingsViewModelFactory
     lateinit var viewModel: SettingsViewModel
 
+    // Flag to prevent infinite loops when updating radio buttons programmatically
+    private var isUpdatingRadioButtons = false
+
     companion object {
         fun newInstance() = SettingsFragment()
     }
@@ -31,8 +34,14 @@ class SettingsFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        vmFactory = SettingsViewModelFactory(SettingsRepository(requireContext().getSharedPreferences("settings",
-            Context.MODE_PRIVATE)))
+        vmFactory = SettingsViewModelFactory(
+            SettingsRepository(
+                requireContext().getSharedPreferences(
+                    "settings",
+                    Context.MODE_PRIVATE
+                )
+            )
+        )
 
         viewModel = ViewModelProvider(this, vmFactory).get(SettingsViewModel::class.java)
     }
@@ -48,20 +57,24 @@ class SettingsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         observeViewModel()
-        setupListeners()
         viewModel.loadSettings()
+        setupListeners()
     }
 
     private fun observeViewModel() {
         viewModel.location.observe(viewLifecycleOwner) {
-            binding.radioGroupLocation.check(
-                if (it == "gps") R.id.radioGps else R.id.radioMap
+            updateRadioGroup(
+                binding.radioGroupLocation,
+                if (it == "gps") R.id.radioGps else R.id.radioMap,
+                locationCheckedChangeListener
             )
         }
 
-        viewModel.language.observe(viewLifecycleOwner) {
-            binding.radioGroupLanguage.check(
-                if (it == "en") R.id.radioEnglish else R.id.radioArabic
+        viewModel.language.observe(viewLifecycleOwner) { lang ->
+            updateRadioGroup(
+                binding.radioGroupLanguage,
+                if (lang == "en") R.id.radioEnglish else R.id.radioArabic,
+                languageCheckedChangeListener
             )
         }
 
@@ -72,34 +85,70 @@ class SettingsFragment : Fragment() {
                 "fahrenheit" -> R.id.radioFahrenheit
                 else -> R.id.radioCelsius
             }
-            binding.radioGroupTemperature.check(id)
+            updateRadioGroup(binding.radioGroupTemperature, id, temperatureCheckedChangeListener)
         }
 
         viewModel.windSpeed.observe(viewLifecycleOwner) {
-            binding.radioGroupWindSpeed.check(
-                if (it == "meter_sec") R.id.radioMeterSec else R.id.radioMileHour
+            updateRadioGroup(
+                binding.radioGroupWindSpeed,
+                if (it == "meter_sec") R.id.radioMeterSec else R.id.radioMileHour,
+                windSpeedCheckedChangeListener
             )
         }
 
         viewModel.notifications.observe(viewLifecycleOwner) {
-            binding.radioGroupNotifications.check(
-                if (it == "enable") R.id.radioEnable else R.id.radioDisable
+            updateRadioGroup(
+                binding.radioGroupNotifications,
+                if (it == "enable") R.id.radioEnable else R.id.radioDisable,
+                notificationsCheckedChangeListener
             )
         }
     }
 
+    private fun updateRadioGroup(
+        radioGroup: android.widget.RadioGroup,
+        checkedId: Int,
+        listener: android.widget.RadioGroup.OnCheckedChangeListener
+    ) {
+        isUpdatingRadioButtons = true
+        radioGroup.setOnCheckedChangeListener(null)
+        radioGroup.check(checkedId)
+        radioGroup.setOnCheckedChangeListener(listener)
+        isUpdatingRadioButtons = false
+    }
+
     private fun setupListeners() {
-        binding.radioGroupLocation.setOnCheckedChangeListener { _, checkedId ->
+        binding.radioGroupLocation.setOnCheckedChangeListener(locationCheckedChangeListener)
+        binding.radioGroupLanguage.setOnCheckedChangeListener(languageCheckedChangeListener)
+        binding.radioGroupTemperature.setOnCheckedChangeListener(temperatureCheckedChangeListener)
+        binding.radioGroupWindSpeed.setOnCheckedChangeListener(windSpeedCheckedChangeListener)
+        binding.radioGroupNotifications.setOnCheckedChangeListener(notificationsCheckedChangeListener)
+    }
+
+    private val locationCheckedChangeListener =
+        android.widget.RadioGroup.OnCheckedChangeListener { _, checkedId ->
+            if (isUpdatingRadioButtons) return@OnCheckedChangeListener
             val value = if (checkedId == R.id.radioGps) "gps" else "map"
             viewModel.updateSetting(KEY_LOCATION, value)
         }
 
-        binding.radioGroupLanguage.setOnCheckedChangeListener { _, checkedId ->
-            val value = if (checkedId == R.id.radioEnglish) "en" else "ar"
-            viewModel.updateSetting(KEY_LANGUAGE, value)
+    private val languageCheckedChangeListener =
+        android.widget.RadioGroup.OnCheckedChangeListener { _, checkedId ->
+            if (isUpdatingRadioButtons) return@OnCheckedChangeListener
+
+            val newLang = if (checkedId == R.id.radioEnglish) "en" else "ar"
+
+            // Only recreate if language actually changed
+            if (viewModel.language.value != newLang) {
+                viewModel.updateSetting(KEY_LANGUAGE, newLang)
+                requireActivity().recreate()
+            }
         }
 
-        binding.radioGroupTemperature.setOnCheckedChangeListener { _, checkedId ->
+    private val temperatureCheckedChangeListener =
+        android.widget.RadioGroup.OnCheckedChangeListener { _, checkedId ->
+            if (isUpdatingRadioButtons) return@OnCheckedChangeListener
+
             val value = when (checkedId) {
                 R.id.radioCelsius -> "celsius"
                 R.id.radioKelvin -> "kelvin"
@@ -109,14 +158,21 @@ class SettingsFragment : Fragment() {
             viewModel.updateSetting(KEY_TEMPERATURE, value)
         }
 
-        binding.radioGroupWindSpeed.setOnCheckedChangeListener { _, checkedId ->
+    private val windSpeedCheckedChangeListener =
+        android.widget.RadioGroup.OnCheckedChangeListener { _, checkedId ->
+            if (isUpdatingRadioButtons) return@OnCheckedChangeListener
+
             val value = if (checkedId == R.id.radioMeterSec) "meter_sec" else "mile_hour"
             viewModel.updateSetting(KEY_WIND_SPEED, value)
         }
 
-        binding.radioGroupNotifications.setOnCheckedChangeListener { _, checkedId ->
+    private val notificationsCheckedChangeListener =
+        android.widget.RadioGroup.OnCheckedChangeListener { _, checkedId ->
+            if (isUpdatingRadioButtons) return@OnCheckedChangeListener
+
             val value = if (checkedId == R.id.radioEnable) "enable" else "disable"
             viewModel.updateSetting(KEY_NOTIFICATIONS, value)
         }
-    }
 }
+
+

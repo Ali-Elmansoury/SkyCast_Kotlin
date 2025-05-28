@@ -14,201 +14,196 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:padding="16dp"
+            android:padding="@dimen/_12sdp"
             android:background="#1C2526">
 
             <!-- Location Section -->
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Location"
+                android:text="@string/location"
                 android:textColor="#FFFFFF"
                 android:textSize="16sp"
-                android:padding="10dp"
-                android:background="@drawable/gradient_background"
-                android:layout_marginBottom="8dp"/>
+                android:padding="@dimen/_8sdp"
+                android:layout_marginBottom="@dimen/_8sdp"
+                android:background="@drawable/gradient_background" />
 
             <RadioGroup
                 android:id="@+id/radioGroupLocation"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="#2E3536"
-                android:padding="16dp"
-                android:layout_marginBottom="16dp">
+                android:padding="@dimen/_12sdp"
+                android:layout_marginBottom="@dimen/_12sdp">
 
                 <RadioButton
                     android:id="@+id/radioGps"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="GPS"
+                    android:text="@string/gps"
                     android:textColor="#FFFFFF"
-                    android:buttonTint="#FF69B4"
-                    android:layout_marginBottom="8dp"/>
+                    android:buttonTint="#7FD9DE"
+                    android:layout_marginBottom="@dimen/_8sdp" />
 
                 <RadioButton
                     android:id="@+id/radioMap"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Map"
+                    android:text="@string/map"
                     android:textColor="#FFFFFF"
-                    android:buttonTint="#FF69B4"/>
+                    android:buttonTint="#7FD9DE"/>
             </RadioGroup>
 
             <!-- Language Section -->
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Language"
+                android:text="@string/language"
                 android:textColor="#FFFFFF"
                 android:textSize="16sp"
-                android:padding="10dp"
-                android:background="@drawable/gradient_background"
-                android:layout_marginBottom="8dp"/>
-
+                android:padding="@dimen/_8sdp"
+                android:layout_marginBottom="@dimen/_8sdp"
+                android:background="@drawable/gradient_background"/>
             <RadioGroup
                 android:id="@+id/radioGroupLanguage"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="#2E3536"
-                android:padding="16dp"
-                android:layout_marginBottom="16dp">
+                android:padding="@dimen/_12sdp"
+                android:layout_marginBottom="@dimen/_12sdp">
 
                 <RadioButton
                     android:id="@+id/radioEnglish"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="English"
+                    android:text="@string/english"
                     android:textColor="#FFFFFF"
-                    android:buttonTint="#FF69B4"
-                    android:layout_marginBottom="8dp"/>
+                    android:buttonTint="#7FD9DE"
+                    android:layout_marginBottom="@dimen/_8sdp" />
 
                 <RadioButton
                     android:id="@+id/radioArabic"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Arabic"
+                    android:text="@string/arabic"
                     android:textColor="#FFFFFF"
-                    android:buttonTint="#FF69B4"/>
+                    android:buttonTint="#7FD9DE"/>
             </RadioGroup>
 
             <!-- Temperature Section -->
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Temperature"
+                android:text="@string/temperature"
                 android:textColor="#FFFFFF"
                 android:textSize="16sp"
-                android:padding="10dp"
-                android:background="@drawable/gradient_background"
-                android:layout_marginBottom="8dp"/>
-
+                android:padding="@dimen/_8sdp"
+                android:layout_marginBottom="@dimen/_8sdp"
+                android:background="@drawable/gradient_background"/>
             <RadioGroup
                 android:id="@+id/radioGroupTemperature"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="#2E3536"
-                android:padding="16dp"
-                android:layout_marginBottom="16dp">
+                android:padding="@dimen/_12sdp"
+                android:layout_marginBottom="@dimen/_12sdp">
 
                 <RadioButton
                     android:id="@+id/radioCelsius"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Celsius"
+                    android:text="@string/celsius"
                     android:textColor="#FFFFFF"
-                    android:buttonTint="#FF69B4"
-                    android:layout_marginBottom="8dp"/>
-
+                    android:buttonTint="#7FD9DE"
+                    android:layout_marginBottom="@dimen/_8sdp"/>
                 <RadioButton
                     android:id="@+id/radioKelvin"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Kelvin"
+                    android:text="@string/kelvin"
                     android:textColor="#FFFFFF"
-                    android:buttonTint="#FF69B4"
-                    android:layout_marginBottom="8dp"/>
+                    android:buttonTint="#7FD9DE"
+                    android:layout_marginBottom="@dimen/_8sdp" />
 
                 <RadioButton
                     android:id="@+id/radioFahrenheit"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Fahrenheit"
+                    android:text="@string/fahrenheit"
                     android:textColor="#FFFFFF"
-                    android:buttonTint="#FF69B4"/>
+                    android:buttonTint="#7FD9DE"/>
             </RadioGroup>
 
             <!-- Wind Speed Section -->
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Wind Speed"
+                android:text="@string/wind_speed"
                 android:textColor="#FFFFFF"
                 android:textSize="16sp"
-                android:padding="10dp"
-                android:background="@drawable/gradient_background"
-                android:layout_marginBottom="8dp"/>
-
+                android:padding="@dimen/_8sdp"
+                android:layout_marginBottom="@dimen/_8sdp"
+                android:background="@drawable/gradient_background"/>
             <RadioGroup
                 android:id="@+id/radioGroupWindSpeed"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="#2E3536"
-                android:padding="16dp"
-                android:layout_marginBottom="16dp">
+                android:padding="@dimen/_12sdp"
+                android:layout_marginBottom="@dimen/_12sdp">
 
                 <RadioButton
                     android:id="@+id/radioMeterSec"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Meter / Sec"
+                    android:text="@string/meter_sec"
                     android:textColor="#FFFFFF"
-                    android:buttonTint="#FF69B4"
-                    android:layout_marginBottom="8dp"/>
+                    android:buttonTint="#7FD9DE"
+                    android:layout_marginBottom="@dimen/_8sdp" />
 
                 <RadioButton
                     android:id="@+id/radioMileHour"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Mile / Hour"
+                    android:text="@string/mile_hour"
                     android:textColor="#FFFFFF"
-                    android:buttonTint="#FF69B4"/>
+                    android:buttonTint="#7FD9DE"/>
             </RadioGroup>
 
             <!-- Notifications Section -->
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Notifications"
+                android:text="@string/notifications"
                 android:textColor="#FFFFFF"
                 android:textSize="16sp"
-                android:padding="10dp"
-                android:background="@drawable/gradient_background"
-                android:layout_marginBottom="8dp"/>
-
+                android:padding="@dimen/_8sdp"
+                android:layout_marginBottom="@dimen/_8sdp"
+                android:background="@drawable/gradient_background"/>
             <RadioGroup
                 android:id="@+id/radioGroupNotifications"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="#2E3536"
-                android:padding="16dp"
-                android:layout_marginBottom="16dp">
+                android:padding="@dimen/_12sdp"
+                android:layout_marginBottom="@dimen/_12sdp">
 
                 <RadioButton
                     android:id="@+id/radioEnable"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Enable"
+                    android:text="@string/enable"
                     android:textColor="#FFFFFF"
-                    android:buttonTint="#FF69B4"
-                    android:layout_marginBottom="8dp"/>
+                    android:buttonTint="#7FD9DE"
+                    android:layout_marginBottom="@dimen/_8sdp" />
 
                 <RadioButton
                     android:id="@+id/radioDisable"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Disable"
+                    android:text="@string/disable"
                     android:textColor="#FFFFFF"
-                    android:buttonTint="#FF69B4"/>
+                    android:buttonTint="#7FD9DE"/>
             </RadioGroup>
 
         </LinearLayout>
