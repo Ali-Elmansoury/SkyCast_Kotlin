@@ -9,30 +9,32 @@ import java.util.Date
 import java.util.Locale
 import java.util.TimeZone
 
-class CurrentWeatherRemoteDataSourceImpl(private val currentWeatherApiService: ICurrentWeatherService): ICurrentWeatherRemoteDataSource {
+class CurrentWeatherRemoteDataSourceImpl(private val currentWeatherApiService: ICurrentWeatherService) : ICurrentWeatherRemoteDataSource {
     override suspend fun getCurrentWeatherOverNetwork(
         latitude: String,
         longitude: String,
         language: String,
         units: String
     ): CurrentWeatherResponse? {
-        var weatherResponse: CurrentWeatherResponse? = null
-        withContext(Dispatchers.IO) {
+        return withContext(Dispatchers.IO) {
             try {
                 val response = currentWeatherApiService.getCurrentWeather(latitude, longitude, language, units)
-                if (response!!.isSuccessful){
-                    weatherResponse = response.body()
+                if (response?.isSuccessful == true && response.body() != null) {
+                    response.body()
+                } else {
+                    Log.e("CurrentWeatherRemoteDataSourceImpl", "Failed to fetch weather: HTTP ${response?.code()}, message: ${response?.message()}")
+                    null
                 }
-            } catch (e: Exception){
-                Log.e("CurrentWeatherRemoteDataSourceImpl", "getCurrentWeatherOverNetwork: ${e.message}", e )
+            } catch (e: Exception) {
+                Log.e("CurrentWeatherRemoteDataSourceImpl", "getCurrentWeatherOverNetwork: ${e.message}", e)
+                null
             }
         }
-        return weatherResponse
     }
 
     override fun getLatitude(current: CurrentWeatherResponse): Double = current.coord.lat
 
-    override fun getLongitude(current: CurrentWeatherResponse): Double =current.coord.lon
+    override fun getLongitude(current: CurrentWeatherResponse): Double = current.coord.lon
 
     override fun getCityName(current: CurrentWeatherResponse): String = current.name
 
@@ -63,7 +65,7 @@ class CurrentWeatherRemoteDataSourceImpl(private val currentWeatherApiService: I
 
     override fun getSeaLevel(current: CurrentWeatherResponse): Int? = current.main.sea_level
 
-    override fun getGroundLevel(current: CurrentWeatherResponse): Int?= current.main.grnd_level
+    override fun getGroundLevel(current: CurrentWeatherResponse): Int? = current.main.grnd_level
 
     override fun getWeatherMain(current: CurrentWeatherResponse): String? =
         current.weather.firstOrNull()?.main
@@ -91,8 +93,7 @@ class CurrentWeatherRemoteDataSourceImpl(private val currentWeatherApiService: I
     ): String {
         val date = Date((unixTimeSeconds + timezoneOffsetSeconds).toLong() * 1000L)
         val format = SimpleDateFormat(pattern, Locale.getDefault())
-        format.timeZone = TimeZone.getTimeZone("GMT") // interpret from UTC
+        format.timeZone = TimeZone.getTimeZone("GMT")
         return format.format(date)
     }
-
 }
