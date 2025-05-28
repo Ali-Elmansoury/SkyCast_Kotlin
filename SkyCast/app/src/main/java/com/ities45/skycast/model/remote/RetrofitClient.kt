@@ -3,6 +3,7 @@ package com.ities45.skycast.model.remote
 import android.content.Context
 import com.ities45.skycast.model.remote.currentweather.ICurrentWeatherService
 import com.ities45.skycast.model.remote.hourlyforecast.IHourlyForecastService
+import com.ities45.skycast.model.remote.map.IMapService
 import okhttp3.Cache
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
@@ -15,6 +16,7 @@ object RetrofitClient {
     private object ApiUrls {
         const val HOURLY_FORECAST = "https://pro.openweathermap.org/data/2.5/forecast/"
         const val CURRENT_WEATHER = "https://api.openweathermap.org/data/2.5/"
+        const val MAP = "https://nominatim.openstreetmap.org/"
     }
 
     // Cache of Retrofit instances for different base URLs
@@ -37,6 +39,11 @@ object RetrofitClient {
             }
             .addInterceptor { chain ->
                 var request = chain.request()
+                if (baseUrl == ApiUrls.MAP) {
+                    request = request.newBuilder()
+                        .addHeader("User-Agent", context.packageName)
+                        .build()
+                }
                 if (!isNetworkAvailable(context)) {
                     request = request.newBuilder()
                         .header("Cache-Control", "public, only-if-cached, max-stale=${60 * 60 * 24 * 4}") // 4 days stale
@@ -57,8 +64,11 @@ object RetrofitClient {
     private fun isNetworkAvailable(context: Context): Boolean {
         val connectivityManager =
             context.getSystemService(Context.CONNECTIVITY_SERVICE) as android.net.ConnectivityManager
-        val networkInfo = connectivityManager.activeNetworkInfo
-        return networkInfo != null && networkInfo.isConnected
+        val activeNetwork = connectivityManager.activeNetwork ?: return false
+        val capabilities = connectivityManager.getNetworkCapabilities(activeNetwork) ?: return false
+        return capabilities.hasTransport(android.net.NetworkCapabilities.TRANSPORT_WIFI) ||
+                capabilities.hasTransport(android.net.NetworkCapabilities.TRANSPORT_CELLULAR) ||
+                capabilities.hasTransport(android.net.NetworkCapabilities.TRANSPORT_ETHERNET)
     }
 
     // Generic method to create service instances
@@ -66,6 +76,7 @@ object RetrofitClient {
         val baseUrl = when (apiType) {
             "HOURLY_FORECAST" -> ApiUrls.HOURLY_FORECAST
             "CURRENT_WEATHER" -> ApiUrls.CURRENT_WEATHER
+            "MAP" -> ApiUrls.MAP
             else -> throw IllegalArgumentException("Unknown API type: $apiType")
         }
 
@@ -81,7 +92,11 @@ object RetrofitClient {
         return createService(context, IHourlyForecastService::class, "HOURLY_FORECAST")
     }
 
-     fun getCurrentWeatherService(context: Context): ICurrentWeatherService {
-         return createService(context, ICurrentWeatherService::class, "CURRENT_WEATHER")
-     }
+    fun getCurrentWeatherService(context: Context): ICurrentWeatherService {
+        return createService(context, ICurrentWeatherService::class, "CURRENT_WEATHER")
+    }
+
+    fun getMapService(context: Context) : IMapService{
+        return createService(context, IMapService::class, "MAP")
+    }
 }
