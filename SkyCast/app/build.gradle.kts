@@ -153,8 +153,10 @@ dependencies {
     implementation ("com.airbnb.android:lottie:6.6.6")
 
     //Android Security Crypto
-    implementation ("androidx.security:security-crypto:1.0.0")
+    implementation ("androidx.security:security-crypto:1.1.0-alpha06")
 
     //Open Street Map
     implementation ("org.osmdroid:osmdroid-android:6.1.20")
+
+    implementation ("androidx.core:core-ktx:1.13.1")
 }
