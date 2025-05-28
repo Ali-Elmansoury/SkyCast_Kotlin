@@ -1,5 +1,7 @@
 package com.ities45.skycast.ui.home.viewModel
 
+import android.content.Context
+import android.preference.PreferenceManager
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -17,8 +19,7 @@ sealed class WeatherUiState {
     data class Error(val message: String) : WeatherUiState()
 }
 
-class HomeViewModel(private val repo: IWeatherRepository) : ViewModel() {
-
+class HomeViewModel(private val repo: IWeatherRepository, private val context: Context) : ViewModel() {
     private val hourlyForecastList = MutableLiveData<List<HourlyItem>>()
     val onlineHourlyForecastList: LiveData<List<HourlyItem>> = hourlyForecastList
 
@@ -28,20 +29,27 @@ class HomeViewModel(private val repo: IWeatherRepository) : ViewModel() {
     private val next4SummariesAtNoon = MutableLiveData<List<HourlyForecastItem>>()
     val onlineNext4Days: LiveData<List<HourlyForecastItem>> = next4SummariesAtNoon
 
-    init {
-        fetchHourlyForecast()
-        fetchCurrentWeather()
+    private var latitude: String? = null
+    private var longitude: String? = null
+
+    fun setCoordinates(latitude: Double, longitude: Double) {
+        this.latitude = latitude.toString()
+        this.longitude = longitude.toString()
+
+        // Get language from settings
+        val prefs = PreferenceManager.getDefaultSharedPreferences(context)
+        val language = prefs.getString("language", "en") ?: "en"
+
+        fetchCurrentWeather(language)
+        fetchHourlyForecast(language)
     }
 
-    fun fetchHourlyForecast() {
+    fun fetchHourlyForecast(language: String = "en") {
         viewModelScope.launch {
             try {
-                val hourly = repo.fetchHourlyForecast(
-                    "30.07111902938482",
-                    "31.021081747751275",
-                    "en",
-                    "metric"
-                )
+                val lat = latitude ?: "30.07111902938482" // Default if not set
+                val lon = longitude ?: "31.021081747751275"
+                val hourly = repo.fetchHourlyForecast(lat, lon, language, "metric")
                 val hourlyForecastItem = hourly.getOrNull()
                 if (hourlyForecastItem != null) {
                     val groupedForecast = repo.groupByDay(
@@ -76,16 +84,13 @@ class HomeViewModel(private val repo: IWeatherRepository) : ViewModel() {
         }
     }
 
-    fun fetchCurrentWeather() {
+    fun fetchCurrentWeather(language: String = "en") {
         viewModelScope.launch {
             currentForecastState.postValue(WeatherUiState.Loading)
             try {
-                val current = repo.fetchCurrentWeather(
-                    "30.07111902938482",
-                    "31.021081747751275",
-                    "en",
-                    "metric"
-                )
+                val lat = latitude ?: "30.07111902938482" // Default if not set
+                val lon = longitude ?: "31.021081747751275"
+                val current = repo.fetchCurrentWeather(lat, lon, language, "metric")
                 val response = current.getOrNull()
                 if (response != null) {
                     currentForecastState.postValue(WeatherUiState.Success(response))

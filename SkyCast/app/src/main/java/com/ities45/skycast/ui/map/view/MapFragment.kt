@@ -77,7 +77,7 @@ class MapFragment : Fragment() {
         setupMap()
         setupSearch()
         setupObservers()
-        requestLocation()
+        //requestLocation()
     }
 
     private fun setupMap() {
@@ -170,7 +170,7 @@ class MapFragment : Fragment() {
         if (permissionsToRequest.isNotEmpty()) {
             ActivityCompat.requestPermissions(requireActivity(), permissionsToRequest, 100)
         } else {
-            fetchLocation()
+            //fetchLocation()
         }
     }
 
