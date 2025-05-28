@@ -1,0 +1,38 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:background="#CC000000"
+    android:gravity="center"
+    android:elevation="10dp">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Alarm Active!"
+        android:textColor="@android:color/white"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:gravity="center"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Tap to turn off"
+        android:textColor="@android:color/white"
+        android:textSize="14sp"
+        android:layout_marginTop="8dp"
+        android:gravity="center"/>
+
+    <Button
+        android:id="@+id/btnTurnOffAlarm"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Turn Off"
+        android:textColor="@android:color/white"
+        android:backgroundTint="#FF4444"
+        android:padding="8dp"/>
+
+</LinearLayout>

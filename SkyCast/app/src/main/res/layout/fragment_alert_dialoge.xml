@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.alertdialoge.view.AlertDialogFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="@dimen/_12sdp"
+        android:background="#1C2526">
+
+        <!-- From and To Containers -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center">
+
+            <!-- From Section -->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:padding="@dimen/_6sdp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/from"
+                    android:textColor="@android:color/white"
+                    android:textSize="@dimen/_14ssp"
+                    android:gravity="center"
+                    android:background="@drawable/gradient_background"
+                    android:padding="@dimen/_6sdp"/>
+
+                <TextView
+                    android:id="@+id/tvFromTime"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="0:00 AM"
+                    android:textColor="@android:color/white"
+                    android:textSize="@dimen/_12ssp"
+                    android:layout_marginTop="@dimen/_6sdp"/>
+
+                <TextView
+                    android:id="@+id/tvFromDate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="DD MMM YYYY"
+                    android:textColor="@android:color/white"
+                    android:textSize="@dimen/_10ssp"
+                    android:layout_marginTop="@dimen/_4sdp"/>
+            </LinearLayout>
+
+            <!-- To Section -->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:padding="@dimen/_6sdp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/to"
+                    android:textColor="@android:color/white"
+                    android:textSize="@dimen/_14ssp"
+                    android:gravity="center"
+                    android:background="@drawable/gradient_background"
+                    android:padding="@dimen/_6sdp"/>
+
+                <TextView
+                    android:id="@+id/tvToTime"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="0:00 AM"
+                    android:textColor="@android:color/white"
+                    android:textSize="@dimen/_12ssp"
+                    android:layout_marginTop="8dp"/>
+
+                <TextView
+                    android:id="@+id/tvToDate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="DD MMM YYYY"
+                    android:textColor="@android:color/white"
+                    android:textSize="@dimen/_10ssp"
+                    android:layout_marginTop="@dimen/_4sdp"/>
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- Alarm and Notification Toggles -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:layout_marginTop="@dimen/_12sdp">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:layout_marginEnd="@dimen/_12sdp">
+
+                <Switch
+                    android:id="@+id/switchAlarm"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:thumbTint="@color/switch_thumb_color"
+                    android:trackTint="@color/switch_track_color"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/alarm"
+                    android:textColor="@android:color/white"
+                    android:textSize="@dimen/_12ssp"
+                    android:layout_marginStart="@dimen/_6sdp"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center">
+
+                <Switch
+                    android:id="@+id/switchNotification"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:thumbTint="@color/switch_thumb_color"
+                    android:trackTint="@color/switch_track_color"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/notifications"
+                    android:textColor="@android:color/white"
+                    android:textSize="@dimen/_12ssp"
+                    android:layout_marginStart="@dimen/_6sdp"/>
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- Save Button -->
+        <Button
+            android:id="@+id/btnSave"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/save"
+            android:textSize="@dimen/_14ssp"
+            android:textColor="@android:color/white"
+            android:background="@drawable/gradient_background"
+            android:layout_marginTop="@dimen/_12sdp"
+            android:padding="@dimen/_8sdp"/>
+    </LinearLayout>
+
+</FrameLayout>
