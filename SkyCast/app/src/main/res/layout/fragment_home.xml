@@ -17,18 +17,30 @@
             android:layout_height="wrap_content"
             android:padding="@dimen/_10sdp">
 
+            <ProgressBar
+                android:id="@+id/progressBar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.5" />
+
             <!-- Location -->
             <TextView
                 android:id="@+id/tvLocation"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/cairo"
-                android:textSize="@dimen/_18ssp"
-                android:textColor="#FFFFFF"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginStart="@dimen/_12sdp"
                 android:layout_marginTop="@dimen/_12sdp"
-                android:layout_marginStart="@dimen/_12sdp" />
+                android:text="@string/cairo"
+                android:textColor="#FFFFFF"
+                android:textSize="@dimen/_18ssp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <!-- Weather Icon -->
             <ImageView
@@ -45,15 +57,15 @@
             <androidx.cardview.widget.CardView
                 android:id="@+id/cvWeatherCard"
                 android:layout_width="0dp"
-                app:cardBackgroundColor="#80FFFFFF"
                 android:layout_height="wrap_content"
-                app:cardCornerRadius="@dimen/_16sdp"
-                app:layout_constraintTop_toBottomOf="@id/ivWeatherIcon"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                android:layout_marginTop="@dimen/_25sdp"
                 android:layout_marginStart="@dimen/_12sdp"
-                android:layout_marginEnd="@dimen/_12sdp">
+                android:layout_marginTop="@dimen/_25sdp"
+                android:layout_marginEnd="@dimen/_12sdp"
+                app:cardBackgroundColor="#80FFFFFF"
+                app:cardCornerRadius="@dimen/_16sdp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/ivWeatherIcon">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
@@ -93,10 +105,10 @@
                         android:id="@+id/tvCondition"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_20sdp"
                         android:text="Cloudy"
                         android:textColor="#FFFFFF"
                         android:textSize="@dimen/_16ssp"
-                        android:layout_marginTop="@dimen/_20sdp"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintHorizontal_bias="0.5"
                         app:layout_constraintStart_toStartOf="parent"
@@ -133,9 +145,9 @@
                                 android:id="@+id/tvWind"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:layout_gravity="center"
                                 android:layout_marginStart="@dimen/_6sdp"
                                 android:text="Wind | 10 km/h"
-                                android:layout_gravity="center"
                                 android:textColor="#FFFFFF"
                                 android:textSize="@dimen/_12ssp" />
                         </LinearLayout>
@@ -159,9 +171,9 @@
                                 android:id="@+id/tvHumidity"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:layout_gravity="center"
                                 android:layout_marginStart="8dp"
                                 android:text="Hum | 54%"
-                                android:layout_gravity="center"
                                 android:textColor="#FFFFFF"
                                 android:textSize="@dimen/_12ssp" />
                         </LinearLayout>
@@ -184,9 +196,9 @@
                                 android:id="@+id/tvPressure"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:layout_gravity="center"
                                 android:layout_marginStart="@dimen/_6sdp"
                                 android:text="Pressure | 1013 hPa"
-                                android:layout_gravity="center"
                                 android:textColor="#FFFFFF"
                                 android:textSize="@dimen/_12ssp" />
                         </LinearLayout>
@@ -209,11 +221,11 @@
                                 android:id="@+id/tvCloud"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:layout_gravity="center"
                                 android:layout_marginStart="@dimen/_6sdp"
                                 android:text="Cloud | 60%"
-                                android:layout_gravity="center"
                                 android:textColor="#FFFFFF"
-                                android:textSize="@dimen/_12ssp"/>
+                                android:textSize="@dimen/_12ssp" />
                         </LinearLayout>
 
                         <!-- Visibility -->
@@ -234,9 +246,9 @@
                                 android:id="@+id/tvVisibility"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:layout_gravity="center"
                                 android:layout_marginStart="@dimen/_6sdp"
                                 android:text="Visibility | 10 km"
-                                android:layout_gravity="center"
                                 android:textColor="#FFFFFF"
                                 android:textSize="@dimen/_12ssp" />
                         </LinearLayout>
@@ -250,41 +262,41 @@
                 android:id="@+id/tvToday"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Today"
-                android:textStyle="bold"
-                android:textSize="@dimen/_18ssp"
-                android:textColor="#FFFFFF"
-                app:layout_constraintTop_toBottomOf="@id/cvWeatherCard"
-                app:layout_constraintStart_toStartOf="parent"
                 android:layout_marginStart="@dimen/_12sdp"
-                android:layout_marginTop="@dimen/_19sdp" />
+                android:layout_marginTop="@dimen/_19sdp"
+                android:text="@string/today"
+                android:textColor="#FFFFFF"
+                android:textSize="@dimen/_18ssp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/cvWeatherCard" />
 
             <!-- Date -->
             <TextView
                 android:id="@+id/tvShortDate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Sep, 12"
-                android:textSize="@dimen/_18ssp"
-                android:textColor="#FFFFFF"
-                app:layout_constraintTop_toBottomOf="@id/cvWeatherCard"
-                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginTop="@dimen/_19sdp"
                 android:layout_marginEnd="@dimen/_12sdp"
-                android:layout_marginTop="@dimen/_19sdp" />
+                android:text="Sep, 12"
+                android:textColor="#FFFFFF"
+                android:textSize="@dimen/_18ssp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/cvWeatherCard" />
 
             <!-- RecyclerView for Hourly Forecast -->
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rvHourlyForecast"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_20sdp"
                 android:layout_marginStart="@dimen/_12sdp"
+                android:layout_marginTop="@dimen/_20sdp"
                 android:layout_marginEnd="@dimen/_12sdp"
-                app:layout_constraintTop_toBottomOf="@id/tvToday"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
                 android:clipToPadding="false"
                 android:orientation="horizontal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tvToday"
                 tools:itemCount="5"
                 tools:listitem="@layout/item_hourly_forecast" />
 
@@ -293,28 +305,28 @@
                 android:id="@+id/tvNextForecast"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Next Forecast"
+                android:layout_marginStart="@dimen/_12sdp"
+                android:layout_marginTop="@dimen/_19sdp"
+                android:text="@string/next_forecast"
                 android:textColor="#FFFFFF"
                 android:textSize="@dimen/_18ssp"
                 android:textStyle="bold"
-                app:layout_constraintTop_toBottomOf="@+id/rvHourlyForecast"
                 app:layout_constraintStart_toStartOf="parent"
-                android:layout_marginStart="@dimen/_12sdp"
-                android:layout_marginTop="@dimen/_19sdp"/>
+                app:layout_constraintTop_toBottomOf="@+id/rvHourlyForecast" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rvNextForecast"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_20sdp"
                 android:layout_marginStart="@dimen/_12sdp"
+                android:layout_marginTop="@dimen/_20sdp"
                 android:layout_marginEnd="@dimen/_12sdp"
-                app:layout_constraintTop_toBottomOf="@id/tvNextForecast"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
                 android:clipToPadding="false"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tvNextForecast"
                 tools:itemCount="5"
-                tools:listitem="@layout/item_forecast"/>
+                tools:listitem="@layout/item_forecast" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
