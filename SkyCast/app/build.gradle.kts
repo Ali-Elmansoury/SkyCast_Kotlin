@@ -156,7 +156,38 @@ dependencies {
     implementation ("androidx.security:security-crypto:1.1.0-alpha06")
 
     //Open Street Map
-    implementation ("org.osmdroid:osmdroid-android:6.1.20")
+    implementation("org.osmdroid:osmdroid-android:6.1.10")
 
     implementation ("androidx.core:core-ktx:1.13.1")
+
+//    testImplementation(libs.kotlinx.coroutines.test)
+//    testImplementation(libs.mockk)
+//    testImplementation("org.junit.jupiter:junit-jupiter:5.10.0")
+
+    val junitVersion = "4.13.2"
+    val hamcrestVersion = "2.2"
+    val archTestingVersion = "2.2.0"
+    val robolectricVersion = "4.13"
+    val androidXTestCoreVersion = "1.6.1"
+    val androidXTestExtKotlinRunnerVersion = "1.2.1"
+    val espressoVersion = "3.6.1"
+    val coroutinesVersion = "1.8.1"
+    val mockkVersion = "1.13.12"
+
+    // Application Dependencies
+    implementation("com.jakewharton.timber:timber:5.0.1")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutinesVersion")
+
+    // Unit Test Dependencies
+    testImplementation("junit:junit:$junitVersion")
+    testImplementation("org.hamcrest:hamcrest:$hamcrestVersion")
+    testImplementation("org.hamcrest:hamcrest-library:$hamcrestVersion")
+    testImplementation("androidx.arch.core:core-testing:$archTestingVersion")
+    testImplementation("org.robolectric:robolectric:$robolectricVersion")
+    testImplementation("androidx.test:core-ktx:$androidXTestCoreVersion")
+    testImplementation("androidx.test.ext:junit-ktx:$androidXTestExtKotlinRunnerVersion")
+    testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:$coroutinesVersion")
+    testImplementation("io.mockk:mockk:$mockkVersion")
+    testImplementation("io.mockk:mockk-android:$mockkVersion")
+    testImplementation("io.mockk:mockk-agent:$mockkVersion")
 }
