@@ -42,7 +42,7 @@
                     android:id="@+id/tvFromTime"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="0:00 AM"
+                    android:text="0:00"
                     android:textColor="@android:color/white"
                     android:textSize="@dimen/_12ssp"
                     android:layout_marginTop="@dimen/_6sdp"/>
@@ -80,7 +80,7 @@
                     android:id="@+id/tvToTime"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="0:00 AM"
+                    android:text="0:00"
                     android:textColor="@android:color/white"
                     android:textSize="@dimen/_12ssp"
                     android:layout_marginTop="8dp"/>

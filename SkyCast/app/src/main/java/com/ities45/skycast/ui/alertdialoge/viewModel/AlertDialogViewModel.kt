@@ -8,10 +8,10 @@ import java.util.Date
 import java.util.Locale
 
 class AlertDialogViewModel : ViewModel() {
-    val fromTime = MutableLiveData<String>()
-    val fromDate = MutableLiveData<String>()
-    val toTime = MutableLiveData<String>()
-    val toDate = MutableLiveData<String>()
+    val fromTime = MutableLiveData<String>("0:00")
+    val fromDate = MutableLiveData<String>("DD MMM YYYY")
+    val toTime = MutableLiveData<String>("0:00")
+    val toDate = MutableLiveData<String>("DD MMM YYYY")
     val isAlarmEnabled = MutableLiveData<Boolean>(false)
     val isNotificationEnabled = MutableLiveData<Boolean>(true)
 
@@ -19,10 +19,10 @@ class AlertDialogViewModel : ViewModel() {
     private val timeFormat = SimpleDateFormat("h:mm a", Locale.US)
 
     fun saveTimeRange(onSave: (Date, Date, Date, Date, Boolean, Boolean) -> Unit) {
-        val fromTimeDate = timeFormat.parse(fromTime.value ?: "") ?: Date()
-        val fromDateDate = dateFormat.parse(fromDate.value ?: "") ?: Date()
-        val toTimeDate = timeFormat.parse(toTime.value ?: "") ?: Date()
-        val toDateDate = dateFormat.parse(toDate.value ?: "") ?: Date()
+        val fromTimeDate = timeFormat.parse(fromTime.value ?: "0:00") ?: Date()
+        val fromDateDate = dateFormat.parse(fromDate.value ?: "DD MMM YYYY") ?: Date()
+        val toTimeDate = timeFormat.parse(toTime.value ?: "0:00") ?: Date()
+        val toDateDate = dateFormat.parse(toDate.value ?: "DD MMM YYYY") ?: Date()
 
         // Combine date and time into a single Date object
         val fromCalendar = Calendar.getInstance().apply {

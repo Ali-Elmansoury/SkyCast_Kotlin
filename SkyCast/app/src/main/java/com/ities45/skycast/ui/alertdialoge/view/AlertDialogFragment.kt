@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.app.DatePickerDialog
 import android.app.TimePickerDialog
+import android.widget.Toast
 import androidx.fragment.app.DialogFragment
 import androidx.lifecycle.ViewModelProvider
 import com.ities45.skycast.databinding.FragmentAlertDialogeBinding
@@ -110,8 +111,25 @@ class AlertDialogFragment : DialogFragment() {
             }
 
             btnSave.setOnClickListener {
-                viewModel.saveTimeRange { fromTime, fromDate, toTime, toDate, isAlarmEnabled, isNotificationEnabled ->
-                    onSaveListener?.invoke(fromTime, fromDate, toTime, toDate, isAlarmEnabled, isNotificationEnabled)
+                val fromTime = viewModel.fromTime.value
+                val fromDate = viewModel.fromDate.value
+                val toTime = viewModel.toTime.value
+                val toDate = viewModel.toDate.value
+
+                // Validate that fields are not at default values or null
+                when {
+                    fromTime == "0:00" || fromDate == "DD MMM YYYY" -> {
+                        Toast.makeText(context, "Please select From time and date", Toast.LENGTH_SHORT).show()
+                        return@setOnClickListener
+                    }
+                    toTime == "0:00" || toDate == "DD MMM YYYY" -> {
+                        Toast.makeText(context, "Please select To time and date", Toast.LENGTH_SHORT).show()
+                        return@setOnClickListener
+                    }
+                }
+
+                viewModel.saveTimeRange { fromTimeDate, fromDateDate, toTimeDate, toDateDate, isAlarmEnabled, isNotificationEnabled ->
+                    onSaveListener?.invoke(fromTimeDate, fromDateDate, toTimeDate, toDateDate, isAlarmEnabled, isNotificationEnabled)
                     dismiss()
                 }
             }
